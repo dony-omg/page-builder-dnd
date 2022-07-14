@@ -22,16 +22,16 @@ function Copyright() {
     );
 }
 
-
-
 function App() {
-
     return (
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
             <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
                 <Grid container spacing={2}>
                     <Grid item xs={2}>
                         <DragDropMenu />
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Box component={'main'} sx={{ p: 2, border: '1px dashed grey' }}></Box>
                     </Grid>
                     <Grid item xs={4}>
                         <Simple />
