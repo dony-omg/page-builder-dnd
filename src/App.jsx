@@ -2,25 +2,12 @@ import React, { useState } from 'react'
 
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
 import Simple from './components/SimpleSortTable/index'
-import DragDropMenu from './components/Menu'
+import DragDropMenu from './components/Section/Menu'
+import PageListSection from './components/Section/PageList';
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="text.secondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
 
 function App() {
     return (
@@ -31,16 +18,17 @@ function App() {
                         <DragDropMenu />
                     </Grid>
                     <Grid item xs={4}>
-                        <Box component={'main'} sx={{ p: 2, border: '1px dashed grey' }}></Box>
+                        <Box component={'main'} sx={{ p: 2, border: '1px dashed grey' }}>
+                            <PageListSection />
+                        </Box>
                     </Grid>
-                    <Grid item xs={4}>
-                        <Simple />
-                    </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
+                        <Box bgcolor={'grey'}>
+                            <Simple />
+                        </Box>
                     </Grid>
                 </Grid>
             </Container>
-            <Copyright />
         </Box>
     )
 }

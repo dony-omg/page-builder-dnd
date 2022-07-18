@@ -8,41 +8,44 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { applyDrag, generateItems } from '../../utils/utils';
 
-class Simple extends Component {
-  constructor() {
-    super();
-    this.state = {
-      items: generateItems(20, (index) => {
-        return {
-          id: index,
-          data: 'Draggable' + index
-        }
-      })
-    }
-  }
+import Element from '../Element';
 
-  render() {
-    return (
-      <div>
-        <div className="simple-page">
-          <Container onDrop={e => this.setState({ items: applyDrag(this.state.items, e) })}>
-            {this.state.items.map(p => {
-              return (
-                <Draggable key={p.id}>
-                  <ListItem key={p.data} sx={{ p: 2, border: '1px dashed grey' }}>
-                    {/* <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}></Box> */}
-                    <ListItemButton>
-                      <ListItemText primary={p.data} />
-                    </ListItemButton>
-                  </ListItem>
-                </Draggable>
-              )
-            })}
-          </Container>
-        </div>
-      </div>
-    )
-  }
+class Simple extends Component {
+    constructor() {
+        super();
+        this.state = {
+            items: generateItems(10, (index) => {
+                return {
+                    id: index,
+                    data: 'Draggable' + index
+                }
+            })
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <div className="simple-page">
+                    <Container onDrop={e => this.setState({ items: applyDrag(this.state.items, e) })}>
+                        {this.state.items.map(p => {
+                            return (
+                                <Draggable key={p.id}>
+                                    <ListItem key={p.data} sx={{ p: 2, border: '1px dashed grey' }}>
+                                        {/* <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}></Box>
+                                        <ListItemButton>
+                                            <ListItemText primary={p.data} />
+                                        </ListItemButton> */}
+                                        <Element />
+                                    </ListItem>
+                                </Draggable>
+                            )
+                        })}
+                    </Container>
+                </div>
+            </div>
+        )
+    }
 }
 
 
