@@ -16,8 +16,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { CONTENT_TYPE, DISPLAY_TYPE } from '../../constants';
-
+import { CONTENT_TYPE, DISPLAY_TYPE, ELEMENT_TYPE } from '../../constants';
 
 
 function generateSelect(select) {
@@ -26,7 +25,7 @@ function generateSelect(select) {
     )
 }
 
-function Element() {
+function Element({ onRemoveElement, onEditElement, element }) {
     const [isEdit, setIsEdit] = React.useState(false);
     const [contentType, setContentType] = React.useState('');
     const [displayType, setDisplayType] = React.useState('');
@@ -66,6 +65,10 @@ function Element() {
         setIsEdit(false);
     }
 
+    const handelRemove = () => {
+        onRemoveElement(element.id);
+    }
+
     return (
         <Card sx={{ maxWidth: 345 }} >
             <CardHeader
@@ -96,11 +99,11 @@ function Element() {
                             }}
                         >
                             <MenuItem onClick={handelEnableEdit}>Edit</MenuItem>
-                            <MenuItem onClick={handleClose}>Remove</MenuItem>
+                            <MenuItem onClick={() => { handelRemove(element?.id) }}>Remove</MenuItem>
                         </Menu>
                     </div>
                 }
-                title="Section"
+                title={`Section ${element.id}`}
             />
             <CardContent>
                 <Box>
@@ -160,7 +163,15 @@ function Element() {
     )
 }
 
-Element.propTypes = {};
-Element.defaultProps = {};
+Element.propTypes = {
+    element: PropTypes.object,
+    onRemoveElement: PropTypes.func,
+    onEditElement: PropTypes.func,
+};
+Element.defaultProps = {
+    element: {},
+    onRemoveElement: () => { },
+    onEditElement: () => { }
+};
 
 export default Element;

@@ -1,3 +1,9 @@
+export const ELEMENT_TYPE = {
+    id: '1',
+    label: 'Element Type',
+    value: 'string',
+};
+
 export const CONTENT_TYPE = [
     {
         "key": 1,
