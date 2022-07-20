@@ -5,8 +5,6 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 import PreviewFrame from '../../components/PreviewFrame';
-// import PageMenu from '../../components/Navigation/PageMenu';
-// import RootMenu from '../../components/Navigation/RootMenu';
 
 import { RootMenu, PageMenu } from '../../components/Navigation';
 
