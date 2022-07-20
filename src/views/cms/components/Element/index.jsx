@@ -2,8 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { Container, Draggable } from 'react-smooth-dnd';
-import { applyDrag, generateItems } from '../../utils/utils';
-
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -28,16 +26,15 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { CONTENT_TYPE, DISPLAY_TYPE } from '../Constants';
+import { CONTENT_TYPE, DISPLAY_TYPE } from '../../constants';
+
+
 
 function generateSelect(select) {
     return select.map((item, index) =>
         <MenuItem key={index} value={item?.value}>{item.label}</MenuItem>
     )
 }
-
-
-
 
 function Element() {
     const [isEdit, setIsEdit] = React.useState(false);
@@ -85,7 +82,7 @@ function Element() {
                 action={
                     <div>
                         <IconButton
-                            id="demo-positioned-button"
+                            id="edit-menu-button"
                             aria-controls={open ? 'demo-positioned-menu' : undefined}
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
@@ -94,8 +91,8 @@ function Element() {
                             <MoreVertIcon />
                         </IconButton>
                         <Menu
-                            id="demo-positioned-menu"
-                            aria-labelledby="demo-positioned-button"
+                            id="edit-menu"
+                            aria-labelledby="edit-menu"
                             anchorEl={anchorEl}
                             open={open}
                             onClose={handleClose}
@@ -115,7 +112,6 @@ function Element() {
                 }
                 title="Section"
             />
-
             <CardContent>
                 <Box>
                     <FormControl fullWidth disabled={!isEdit}>

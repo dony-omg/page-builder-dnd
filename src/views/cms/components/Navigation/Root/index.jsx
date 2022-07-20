@@ -7,7 +7,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
 import DraftsIcon from '@mui/icons-material/Drafts';
 
-function DragDropMenu() {
+export function Root() {
     return (
         <List>
             <ListItem disablePadding>
@@ -30,5 +30,4 @@ function DragDropMenu() {
     )
 }
 
-
-export default DragDropMenu;
+Root.defaultProps = {}

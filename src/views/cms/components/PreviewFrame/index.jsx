@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Draggable } from 'react-smooth-dnd';
-import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import Box from '@mui/material/Box'
 
-import { applyDrag, generateItems } from '../../utils/utils';
+import { applyDrag, generateItems } from '../../utils';
 
 import Element from '../Element';
 
-class Simple extends Component {
+class PreviewFrame extends Component {
     constructor() {
         super();
         this.state = {
@@ -31,12 +28,14 @@ class Simple extends Component {
                         {this.state.items.map(p => {
                             return (
                                 <Draggable key={p.id}>
-                                    <ListItem key={p.data} sx={{ p: 2, border: '1px dashed grey' }}>
+                                    <ListItem key={p.data} sx={{ p: 2, border: '1px dashed grey', margin: 'auto' }}>
                                         {/* <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}></Box>
                                         <ListItemButton>
                                             <ListItemText primary={p.data} />
                                         </ListItemButton> */}
-                                        <Element />
+                                        <Box sx={{ margin: 'auto' }}>
+                                            <Element />
+                                        </Box>
                                     </ListItem>
                                 </Draggable>
                             )
@@ -49,4 +48,4 @@ class Simple extends Component {
 }
 
 
-export default Simple;
+export default PreviewFrame;
