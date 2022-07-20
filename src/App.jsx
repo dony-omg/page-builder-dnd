@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 
-import Builder from './views/cms/views/Builder/index';
+import Builder from './package/cms/views/Builder/index';
 
 function App() {
     return (
-        <>
+        <div>
             <Builder />
-        </>
+        </div>
     )
 }
 
