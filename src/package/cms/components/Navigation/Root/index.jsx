@@ -15,7 +15,7 @@ export function Root() {
                     <ListItemIcon>
                         <InboxIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Pages" />
+                    {/* <ListItemText primary="Pages" /> */}
                 </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
@@ -23,7 +23,7 @@ export function Root() {
                     <ListItemIcon>
                         <DraftsIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Inspection" />
+                    {/* <ListItemText primary="Inspection" /> */}
                 </ListItemButton>
             </ListItem>
         </List>

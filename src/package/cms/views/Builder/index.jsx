@@ -1,37 +1,48 @@
-import React, { useState } from 'react'
-
+import React from 'react'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
+// components
 import PreviewFrame from '../../components/PreviewFrame';
-
-import { RootMenu, PageMenu } from '../../components/Navigation';
+import { PageMenu } from '../../components/Navigation';
 
 function Builder() {
     return (
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-            <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={2}>
-                        <RootMenu />
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Box component={'main'} sx={{ p: 2, border: '1px dashed grey' }}>
-                            <PageMenu />
-                        </Box>
-                    </Grid>
-                    <Grid item xs={7}>
-                        <Box bgcolor={'grey'}>
-                            <PreviewFrame />
-                        </Box>
-                    </Grid>
+        <Container maxWidth="sx">
+            <Grid container>
+                <Grid item
+                    sx={{
+                        p: 2,
+                        border: '1px solid #cfd7df',
+                        width: '340px',
+                        display: 'inline-block',
+                        position: 'absolute',
+                        bottom: 0,
+                        top: '65px',
+                        overflowY: 'auto',
+                        left: 0,
+                    }}>
+                    <PageMenu />
                 </Grid>
-            </Container>
-        </Box>
+                <Grid sx={{
+                    right: 0,
+                    position: 'absolute',
+                    left: '340px',
+                    bottom: 0,
+                    top: '65px',
+                    backgroundColor: '#ebeff3',
+                    overflowY: 'auto',
+                    border: '1px solid #cfd7df'
+                }}>
+                    <PreviewFrame />
+                </Grid>
+            </Grid>
+        </Container >
     )
 };
 
 Builder.propTypes = {};
 Builder.defaultProps = {};
+
 export default Builder;

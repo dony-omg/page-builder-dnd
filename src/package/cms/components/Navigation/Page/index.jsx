@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -8,20 +7,13 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import WebIcon from '@mui/icons-material/Web';
 import PostAddIcon from '@mui/icons-material/PostAdd';
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 // components
 import CreatePageForm from "../../Form/CreatePage";
 import AlertsDialog from '../../Dialog/Alerts';
+import { Box, Typography } from '@mui/material';
 
 const CreatePageListItem = () => {
     const [isCreate, setIsCreate] = React.useState(false);
-
     const handelShowCreate = () => {
         setIsCreate(true);
     }
@@ -52,7 +44,7 @@ const CreatePageListItem = () => {
 
 
 function generate(element) {
-    return [0, 1, 2].map((value) =>
+    return [0, 1, 2, 3].map((value) =>
         React.cloneElement(element, {
             key: value,
         }),
@@ -60,7 +52,7 @@ function generate(element) {
 }
 
 const Demo = styled('div')(({ theme }) => ({
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: theme.palette.background.grey,
 }));
 
 export function Page() {
@@ -69,6 +61,8 @@ export function Page() {
     return (
         <div>
             <Demo>
+                <Typography variant='h5' mb={2}>Page Management</Typography>
+                <CreatePageListItem />
                 <List dense={dense}>
                     {generate(
                         <ListItem
@@ -86,9 +80,11 @@ export function Page() {
                             </ListItemButton>
                         </ListItem>,
                     )}
-                    <CreatePageListItem />
                 </List>
             </Demo>
         </div>
     )
 }
+
+Page.propTypes = {};
+Page.defaultProps = {};

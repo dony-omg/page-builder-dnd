@@ -1,7 +1,7 @@
 export const ELEMENT_TYPE = {
     id: '1',
-    label: 'Element Type',
-    value: 'string',
+    label: '',
+    value: '',
 };
 
 export const CONTENT_TYPE = [

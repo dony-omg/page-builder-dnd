@@ -47,12 +47,14 @@ class PreviewFrame extends Component {
 
     render() {
         return (
-            <Box sx={{
-                border: '1px dashed grey', backgroundColor: '#bdbdbd',
-            }}>
+            <Box sx={{}}>
                 <Box sx={{
                     p: 1,
                     backgroundColor: '#fff',
+                    position: 'fixed',
+                    width: '100%',
+                    zIndex: 2,
+                    borderBottom: '1px solid #cfd7df',
                 }}>
                     <IconButton
                         color="success"
@@ -68,6 +70,7 @@ class PreviewFrame extends Component {
                 <Container style={{
                     // height: '100vh',
                     // overflowY: 'auto',
+                    paddingTop: '60px',
                 }} onDrop={e => this.setState({ items: applyDrag(this.state.items, e) })}>
                     {this.state.items.map(p => {
                         return (
@@ -94,7 +97,7 @@ class PreviewFrame extends Component {
                         <PostAddIcon />
                     </IconButton>
                 </Box>
-            </ Box>
+            </ Box >
         )
     }
 }
