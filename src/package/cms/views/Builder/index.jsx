@@ -28,7 +28,7 @@ function Builder() {
                 <Grid sx={{
                     right: 0,
                     position: 'absolute',
-                    left: '340px',
+                    left: '339px',
                     bottom: 0,
                     top: '65px',
                     backgroundColor: '#ebeff3',

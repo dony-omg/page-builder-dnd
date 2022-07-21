@@ -4,15 +4,20 @@ import { Container, Draggable } from 'react-smooth-dnd';
 import ListItem from '@mui/material/ListItem';
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton';
+import Grid from '@mui/material/Grid';
 import CancelIcon from '@mui/icons-material/Cancel';
 import SaveIcon from '@mui/icons-material/Save';
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import TextField from '@mui/material/TextField';
+
 // component
 import Element from '../Element';
-
+import AlertsDialog from '../Dialog/Alerts';
 // constants && utils
 import { CONTENT_TYPE, DISPLAY_TYPE, ELEMENT_TYPE } from '../../constants';
 import { applyDrag, generateItems } from '../../utils';
+import { Typography } from '@mui/material';
 
 class PreviewFrame extends Component {
 
@@ -20,6 +25,7 @@ class PreviewFrame extends Component {
         super();
         this.state = {
             items: [{ id: 1, data: 'Hello' }],
+            isEdit: false,
         }
     }
 
@@ -41,47 +47,90 @@ class PreviewFrame extends Component {
         })
     }
 
-    handelSavePage = () => { }
+    handelEditPage = () => {
+        this.setState({ isEdit: true })
+    }
 
-    handelCancelPage = () => { }
+    handelSavePage = () => {
+        this.setState({ isEdit: false })
+    }
+
+    handelCancelPage = () => {
+        this.setState({ isEdit: false })
+    }
+
+    onChangeEditNamePage = (e) => {
+
+    }
 
     render() {
+        const { isEdit } = this.state;
+
         return (
-            <Box sx={{}}>
+            <Box>
                 <Box sx={{
                     p: 1,
                     backgroundColor: '#fff',
-                    position: 'fixed',
                     width: '100%',
                     zIndex: 2,
                     borderBottom: '1px solid #cfd7df',
                 }}>
-                    <IconButton
-                        color="success"
-                        variant="contained"
-                        onClick={this.handelAddElement}
-                    >
-                        <PostAddIcon />
-                    </IconButton>
-                    <IconButton color='info' onClick={this.handelSavePage} sx={{ mr: 1 }}><SaveIcon /></IconButton>
-                    <IconButton color='error' onClick={this.handelCancelPage}><CancelIcon /></IconButton>
+                    <Grid container spacing={1} alignContent="baseline" justifyContent="space-between" value={'home_page_name'}>
+                        <Grid item>
+                            {isEdit ? (
+                                <TextField
+                                    id="edit-name-pate-text-field"
+                                    label="Edit name page"
+                                    variant="standard"
+                                    defaultValue={'home_page_name'}
+                                />
+                            ) : (
+                                <Typography variant='h6'>
+                                    home_page_name
+                                </Typography>
+                            )}
+
+                        </Grid>
+                        <Grid item>
+                            {isEdit ? (
+                                <>
+                                    <IconButton
+                                        color="success"
+                                        variant="contained"
+                                        onClick={this.handelAddElement}
+                                    >
+                                        <PostAddIcon />
+                                    </IconButton>
+                                    <IconButton color='info' onClick={this.handelSavePage} sx={{ mr: 1 }}><SaveIcon /></IconButton>
+                                    <IconButton color='error' onClick={this.handelCancelPage}><CancelIcon /></IconButton></>
+                            ) : (
+                                <>
+                                    <IconButton
+                                        variant="contained"
+                                        onClick={this.handelEditPage}
+                                    >
+                                        <BorderColorIcon />
+                                    </IconButton>
+                                    <AlertsDialog content={'Are you sure you want to remove this page?'} />
+                                </>
+                            )}
+                        </Grid>
+                    </Grid>
+
 
                 </Box>
-                <Container style={{
-                    // height: '100vh',
-                    // overflowY: 'auto',
-                    paddingTop: '60px',
-                }} onDrop={e => this.setState({ items: applyDrag(this.state.items, e) })}>
+                <Container
+                    style={{
+                        paddingTop: '60px',
+                    }}
+                    onDrop={e => this.setState({ items: applyDrag(this.state.items, e) })}
+                >
                     {this.state.items.map(p => {
                         return (
                             <Draggable key={p.id}>
                                 <ListItem key={p.data} sx={{ p: 2, margin: 'auto' }}>
-                                    {/* <Box component="span" sx={{ p: 2, border: '1px dashed grey' }}></Box>
-                                        <ListItemButton>
-                                            <ListItemText primary={p.data} />
-                                        </ListItemButton> */}
                                     <Box sx={{ margin: 'auto' }}>
-                                        <Element element={p} onRemoveElement={this.handelRemoveElement} />
+                                        <Element element={p} onRemoveElement={this.handelRemoveElement} isEdit={isEdit} />
                                     </Box>
                                 </ListItem>
                             </Draggable>

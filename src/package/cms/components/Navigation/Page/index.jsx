@@ -7,10 +7,10 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import WebIcon from '@mui/icons-material/Web';
 import PostAddIcon from '@mui/icons-material/PostAdd';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 // components
 import CreatePageForm from "../../Form/CreatePage";
-import AlertsDialog from '../../Dialog/Alerts';
-import { Box, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 
 const CreatePageListItem = () => {
     const [isCreate, setIsCreate] = React.useState(false);
@@ -65,17 +65,13 @@ export function Page() {
                 <CreatePageListItem />
                 <List dense={dense}>
                     {generate(
-                        <ListItem
-                            secondaryAction={
-                                <AlertsDialog content={'Are you sure you want to remove this page?'} />
-                            }
-                        >
+                        <ListItem>
                             <ListItemButton>
                                 <ListItemIcon>
                                     <WebIcon />
                                 </ListItemIcon>
                                 <ListItemText
-                                    primary="Home"
+                                    primary="home_page_name"
                                 />
                             </ListItemButton>
                         </ListItem>,

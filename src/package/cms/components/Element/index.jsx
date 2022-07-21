@@ -13,7 +13,7 @@ import Select from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Menu from '@mui/material/Menu';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import MenuItem from '@mui/material/MenuItem';
 
 import { CONTENT_TYPE, DISPLAY_TYPE } from '../../constants';
@@ -24,20 +24,14 @@ function generateSelect(select) {
     )
 }
 
-function Element({ onRemoveElement, onEditElement, element }) {
-    const [isEdit, setIsEdit] = React.useState(false);
+function Element({ onRemoveElement, onEditElement, element, isEdit }) {
     const [contentType, setContentType] = React.useState('');
     const [displayType, setDisplayType] = React.useState('');
     const [keyCode, setKeyCode] = React.useState('');
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const open = Boolean(anchorEl);
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+
 
     const handleChangeContentType = (event) => {
         setContentType(event.target.value);
@@ -51,18 +45,6 @@ function Element({ onRemoveElement, onEditElement, element }) {
         setKeyCode(event.target.value);
     };
 
-    const handelEnableEdit = () => {
-        setIsEdit(true);
-        setAnchorEl(false);
-    }
-
-    const handelEditCancel = () => {
-        setIsEdit(false);
-    }
-
-    const handelSave = () => {
-        setIsEdit(false);
-    }
 
     const handelRemove = () => {
         onRemoveElement(element.id);
@@ -78,28 +60,11 @@ function Element({ onRemoveElement, onEditElement, element }) {
                             aria-controls={open ? 'demo-positioned-menu' : undefined}
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
-                            onClick={handleClick}
+                            onClick={() => { handelRemove(element?.id) }}
+                            disabled={!isEdit}
                         >
-                            <MoreVertIcon />
+                            <DeleteOutlineIcon />
                         </IconButton>
-                        <Menu
-                            id="edit-menu"
-                            aria-labelledby="edit-menu"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                        >
-                            <MenuItem onClick={handelEnableEdit}>Edit</MenuItem>
-                            <MenuItem onClick={() => { handelRemove(element?.id) }}>Remove</MenuItem>
-                        </Menu>
                     </div>
                 }
                 title={`Section ${element.id}`}
@@ -151,23 +116,18 @@ function Element({ onRemoveElement, onEditElement, element }) {
                 </Box>
 
             </CardContent>
-            {isEdit && (
-                <CardActions>
-                    <Button size="small" onClick={handelSave}>Save</Button>
-                    <Button size="small" onClick={handelEditCancel}>Cancel</Button>
-                </CardActions>
-            )}
-
         </Card>
     )
 }
 
 Element.propTypes = {
+    isEdit: PropTypes.bool,
     element: PropTypes.object,
     onRemoveElement: PropTypes.func,
     onEditElement: PropTypes.func,
 };
 Element.defaultProps = {
+    isEdit: false,
     element: {},
     onRemoveElement: () => { },
     onEditElement: () => { }
